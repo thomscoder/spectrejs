@@ -1,0 +1,7 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/thomasalbertini/Desktop/spectre-shell'
+cd deps/v8 && \
+	./tools/dev/v8gen.py arm64.release.sample && \
+	ninja -C out.gn/arm64.release.sample v8_monolith
+make: Leaving directory `/Users/thomasalbertini/Desktop/spectre-shell'
+ 

@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Jun 11 00:47:37 2022
+# Make data base, printed on Sat Jun 11 17:13:10 2022
 
 # Variables
 
@@ -24,7 +24,6 @@ VSCODE_LOG_NATIVE = false
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
- 
 # automatic
 @F = $(notdir $@)
 # makefile
@@ -48,19 +47,22 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/x2/3h4_7s8141j77wjk_sfcd4s40000gn/T/vscode-ipc-dadc77e0-9419-465a-a642-84af70caa132.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/x2/3h4_7s8141j77wjk_sfcd4s40000gn/T/vscode-ipc-a5dac6a8-8d86-4319-a18b-c70f329b4be9.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/thomasalbertini/Desktop/v8/depot_tools/depot_tools:/Users/thomasalbertini/.pyenv/shims:/opt/homebrew/opt/llvm/bin:/opt/local/bin:/opt/local/sbin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
+LaunchInstanceID = 8046B7F8-370A-489A-A762-06C15D0D1D23
+# environment
 VSCODE_LOG_STACK = false
 # environment
+ 
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.HkAWcNFMZm/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.O5aYUZXTUm/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -85,6 +87,8 @@ VSCODE_CODE_CACHE_PATH = /Users/thomasalbertini/Library/Application Support/Code
 LOGNAME = thomasalbertini
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from `Makefile', line 2)
+JS_FILE_NAME = index
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -98,7 +102,6 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 1
 # default
- 
 MAKE_VERSION := 3.81
 # environment
 USER = thomasalbertini
@@ -142,6 +145,8 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -153,9 +158,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 7275
+VSCODE_PID = 588
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=1/93=1%
+# Load=72/1024=7%, Rehash=0, Collisions=1/96=1%
 
 # Pattern-specific Variable Values
 
@@ -163,7 +168,7 @@ VSCODE_PID = 7275
 
 # Directories
 
-# . (device 16777232, inode 48831119): 11 files, no impossibilities.
+# . (device 16777233, inode 48831119): 11 files, no impossibilities.
 
 # 11 files, no impossibilities in 1 directories.
 
@@ -177,12 +182,13 @@ spectre:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 9):
+#  commands to execute (from `Makefile', line 10):
 	cd deps/v8 && \
 	g++ -I. -Iinclude ../../src/spectre.cpp -o \
 	spectre -lv8_monolith -Lout.gn/${SYSTEM}.release.sample/obj/ \
+ 
 	-pthread -std=c++17 -DV8_COMPRESS_POINTERS && \
-	./spectre
+	clear && ./spectre 
 	
 
 # Not a target:
@@ -203,7 +209,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 00:44:49
+#  Last modified 2022-06-11 16:47:44
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -213,7 +219,7 @@ build:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 3):
+#  commands to execute (from `Makefile', line 4):
 	cd deps/v8 && \
 	./tools/dev/v8gen.py ${SYSTEM}.release.sample && \
 	ninja -C out.gn/${SYSTEM}.release.sample v8_monolith
@@ -238,6 +244,6 @@ build:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jun 11 00:47:37 2022
+# Finished Make data base on Sat Jun 11 17:13:10 2022
 
  

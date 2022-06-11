@@ -1,4 +1,4 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/thomasalbertini/Desktop/spectre-shell'
 cd deps/v8 && \
 	./tools/dev/v8gen.py arm64.release.sample && \

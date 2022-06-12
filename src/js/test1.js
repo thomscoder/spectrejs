@@ -1,3 +1,3 @@
-const test1 = (name) => {
-    print("Test 1 ->", name);
+const test1 = (word = "Foo") => {
+    print("Test 1 ->", word);
 }

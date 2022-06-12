@@ -4,6 +4,6 @@ class Spawner {
     }
 
     spawn() {
-        return `${this.ghostName} got ghostified`;
+        return `${this.ghostName} has appeared`;
     }
 }

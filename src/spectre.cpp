@@ -54,6 +54,7 @@ bool ExecuteString(v8::Isolate* isolate, v8::Local<v8::String> source,
 void Read(const v8::FunctionCallbackInfo<v8::Value>& args);
 void Print(const v8::FunctionCallbackInfo<v8::Value>& args);
 void Ghostify(const v8::FunctionCallbackInfo<v8::Value>& args);
+void Haunt(const v8::FunctionCallbackInfo<v8::Value>& args);
 v8::MaybeLocal<v8::String> ReadFile(v8::Isolate* isolate, const char* name);
 void ReportException(v8::Isolate* isolate, v8::TryCatch* handler);
 
@@ -118,9 +119,44 @@ v8::Local<v8::Context> CreateShellContext(v8::Isolate* isolate) {
   global->Set(isolate, "print", v8::FunctionTemplate::New(isolate, Print));
   // Bind the global 'read' function to the C++ Read callback.
   global->Set(isolate, "read", v8::FunctionTemplate::New(isolate, Read));
+  global->Set(isolate, "haunt", v8::FunctionTemplate::New(isolate, Haunt));
   // Bind the global 'ghostify' function to the C++ Ghostify callback.
   global->Set(isolate, "ghostify", v8::FunctionTemplate::New(isolate, Ghostify));
   return v8::Context::New(isolate, NULL, global);
+}
+
+static const v8::HeapGraphNode* GetProperty(v8::Isolate* isolate,
+                                            const v8::HeapGraphNode* node,
+                                            v8::HeapGraphEdge::Type type,
+                                            const char* name) {
+  for (int i = 0, count = node->GetChildrenCount(); i < count; ++i) {
+    const v8::HeapGraphEdge* prop = node->GetChild(i);
+    v8::String::Utf8Value prop_name(isolate, prop->GetName());
+    if (prop->GetType() == type && strcmp(name, *prop_name) == 0)
+      return prop->GetToNode();
+  }
+  return nullptr;
+}
+
+void Haunt(const v8::FunctionCallbackInfo<v8::Value>& args) {
+  v8::HeapProfiler* heap_profiler = args.GetIsolate()->GetHeapProfiler();
+
+  const v8::HeapSnapshot* snapshot = heap_profiler->TakeHeapSnapshot();
+  const v8::HeapGraphNode* node = snapshot->GetRoot()->GetChild(1)->GetToNode();
+  const v8::HeapGraphNode* noda = GetProperty(args.GetIsolate(), node, v8::HeapGraphEdge::kInternal, "map");
+  const v8::Local<v8::String> name = noda->GetName();
+  v8::String::Utf8Value str(args.GetIsolate(), name);
+  const char* cstr = ToCString(str);
+  const size_t size = node->GetShallowSize();
+  const v8::HeapGraphNode::Type type = noda->GetType(); 
+  int nodes_count = snapshot->GetNodesCount();
+  printf("Nodes count: %d\n", nodes_count);
+  printf("Node name: %s\n", cstr);
+  printf("Node size: %zu\n", size);
+  printf("Node type: %u\n", type);
+  std::cout << node << std::endl;
+  printf("%s\n", "========================");
+  heap_profiler->DeleteAllHeapSnapshots();
 }
 
 void Read(const v8::FunctionCallbackInfo<v8::Value>& args) {

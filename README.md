@@ -1,6 +1,6 @@
 # Spectre 👻
 
-Very minimal custom Javascript runtime built on top of V8.
+Very minimal custom Javascript shell built on top of V8.
 It is just me playing around with the V8 while learning C++ and how Javascript truly works.
 
 # Usage
